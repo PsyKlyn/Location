@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: gps-tracker
+    env: python
+    buildCommand: pip3 install requirements.txt && pip install gunicorn gevent
+    startCommand: gunicorn --worker-class gevent --worker 2 --bind 0.0.0.0:$PORT app:socketio
+    envVars: 
+      - key: PYTHON_VERSION
+        value: 3.12.7
